@@ -3,12 +3,32 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.Border;
 
+/**
+ * @since November 24, 2020
+ * @author M-H-12
+ * The view for the application (WIP).
+ */
 public class AppView extends JFrame{
 
+	/**
+	 * The single note button.
+	 */
 	private JButton single;
+	/**
+	 * The 5 note button.
+	 */
 	private JButton five;
+	/**
+	 * The quit button.
+	 */
 	private JButton quit;
+	/**
+	 * The main menu text
+	 */
 	private JTextArea text;
+	/**
+	 * The picture showing all of the notes which might be tested.
+	 */
 	private JLabel picture;
 	
 	public AppView() {
@@ -39,7 +59,7 @@ public class AppView extends JFrame{
 		top.add(text);
 		add(picture);
 		
-		setSize(600,300);
+		setSize(700,300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		setVisible(true);
