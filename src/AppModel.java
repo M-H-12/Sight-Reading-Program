@@ -32,30 +32,16 @@ public class AppModel {
 	}
 	
 	/**
-	 * Generates a note from a random number (TEMPORARY, WILL BE REMOVED IN FUTURE).
-	 * @return the random note.
+	 * Generates 4 random numbers from 0 to 15,
+	 * @return the numbers to be generated.
 	 */
-	public String getNote() {
+	public int [] genNumbers() {
+
+		int notes[] = new int[4]; 
+		for(int i = 0; i < 4; i++)
+			notes[i] = gen.nextInt(16);
 		
-		int noteNum = genNumber();
-		
-		if(noteNum < 7)
-			return ((char)(noteNum + 65) + "");
-		else if(noteNum == 7)
-			return "A (High)";
-		else if(noteNum == 8)
-			return "G (Low)";
-		else if(noteNum == 9)
-			return "G# (Low)";
-		else if(noteNum == 10)
-			return "F# (Low)";
-		else if(noteNum == 11)
-			return "A#";
-		else if(noteNum == 12 || noteNum == 13)
-			return (char)(55 + noteNum) + "#";
-		else
-			return (char)(56 + noteNum) + "#";
-		
+		return notes;
 		
 	}
 	

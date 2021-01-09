@@ -25,8 +25,9 @@ public class AppController {
 		view = new AppView(); //Creates a new AppView object.
 		model = new AppModel(); //Creates a new AppModel object.
 		this.view.singleListener(new AddSingleListener()); //Adds a listener for the single note button.
-		this.view.fiveListener(new AddFiveListener()); //Adds a listener for the 5 note button.
+		this.view.fourListener(new AddFourListener()); //Adds a listener for the 5 note button.
 		this.view.quitListener(new AddQuitListener()); //Adds a listener for the quit button.
+		this.view.menuListener(new AddMenuListener()); //Adds a listener for the menu button.
 		
 	}
 
@@ -86,7 +87,10 @@ public class AppController {
 	
 			if(e.getSource() == view.getSingle()) {
 				
-				System.out.println("Single: " + model.getNote());
+				int note = model.genNumber();
+				
+				view.singlePane(note);
+				
 				
 			}
 			
@@ -97,21 +101,21 @@ public class AppController {
 	/**
 	 * @since November 24, 2020
 	 * @author M-H-12
-	 * The listener for the five notes button.
+	 * The listener for the four notes button.
 	 */
-	class AddFiveListener implements ActionListener{
+	class AddFourListener implements ActionListener{
 		
 		@Override
 		/**
-		 * Determines if the five notes button is pressed.
+		 * Determines if the four notes button is pressed.
 		 */
 		public void actionPerformed(ActionEvent e) {
 	
-			if(e.getSource() == view.getFive()) {
+			if(e.getSource() == view.getFour()) {
 				
-				for (int i = 0; i < 5; i++)
-					System.out.println("Five(" + (i+1) +"): " + model.getNote());
+				int [] notes = model.genNumbers();
 				
+				view.fourPane(notes);
 			}
 			
 		}
@@ -126,9 +130,39 @@ public class AppController {
 	class AddQuitListener implements ActionListener{
 			
 			@Override
+			/**
+			 * Determines if the quit button is pressed.
+			 */
 			public void actionPerformed(ActionEvent e) {
 		
 				if(e.getSource() == view.getQuit()) view.dispose();
+					
+			}		
+	}
+	
+	/**
+	 * @since January 6, 2020
+	 * @author M-H-12
+	 * The listener for the menu button.
+	 */
+	class AddMenuListener implements ActionListener{
+			
+			@Override
+			/**
+			 * Changes the screen back to the main menu.
+			 */
+			public void actionPerformed(ActionEvent e) {
+		
+				if(e.getSource() == view.getMenuButton()) {
+					
+					view.getContentPane().removeAll();
+					view.getContentPane().invalidate();
+					
+					view.getContentPane().add(view.getMenu());
+					view.getContentPane().revalidate();
+					view.getContentPane().repaint();
+					
+				}
 					
 			}		
 	}
